@@ -1,12 +1,16 @@
 <template>
   <div class="products-index">
     <h1>All Products</h1>
-    <div v-for="product in products" v-bind:key="product.id">
-      <h2>{{ product.name }}</h2>
+    <div class="card" style="width: 18rem" v-for="product in products" v-bind:key="product.id">
       <img v-bind:src="product.image_url" v-bind:alt="product.name" />
-      <p>Description: {{ product.description }}</p>
-      <p>Item Count: {{ product.itemcount }}</p>
-      <router-link v-bind:to="`/products/${product.id}`">More Details</router-link>
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+        <p>Item Count: {{ product.itemcount }}</p>
+        <router-link class="btn btn-primary" v-bind:to="`/products/${product.id}`">More Details</router-link>
+      </div>
     </div>
   </div>
 </template>
