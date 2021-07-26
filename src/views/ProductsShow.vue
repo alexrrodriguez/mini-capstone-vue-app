@@ -6,6 +6,8 @@
     <p>Item Count: {{ product.itemcount }}</p>
     <router-link v-bind:to="`/products/${product.id}/edit`">Edit Product</router-link>
     |
+    <button v-on:click="destroyProduct(product)">Delete Product</button>
+    |
     <router-link to="/products">Back to all Products</router-link>
   </div>
 </template>
@@ -24,6 +26,13 @@ export default {
       this.product = response.data;
     });
   },
-  methods: {},
+  methods: {
+    destroyProduct: function (product) {
+      axios.delete("/products/" + product.id).then((response) => {
+        console.log("product destroy", response);
+        this.$router.push("/products");
+      });
+    },
+  },
 };
 </script>
